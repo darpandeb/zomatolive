@@ -144,18 +144,11 @@ app.put('/updateStatus/:id',(req,res) => {
     res.send('data updated')
 })
 
-// return all the orders
-app.get('/orders',(req,res) => {
-    db.collection('order').find().toArray((err,result) => {
-        if(err) throw err;
-        res.send(result)
-    })
-})
 // return orders based on email 
 app.get('/orders',(req,res) => {
     var query={}
     if(req.query.email){
-        query={"email":req.query.email}
+        query={email:req.query.email}
         db.collection('order').find(query).toArray((err,result) => {
             if(err) throw err;
             res.send(result)
