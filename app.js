@@ -153,7 +153,7 @@ app.get('/orders',(req,res) => {
 })
 // return orders based on email 
 app.get('/orders',(req,res) => {
-    query={}
+    var query={}
     if(req.query.email){
         query={"email":req.query.email}
         db.collection('order').find(query).toArray((err,result) => {
