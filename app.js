@@ -151,6 +151,18 @@ app.get('/orders',(req,res) => {
         res.send(result)
     })
 })
+// return orders based on email 
+app.get('/orders',(req,res) => {
+    query={}
+    if(req.query.email){
+        query={email:req.query.email}
+        db.collection('order').find(query).toArray((err,result) => {
+            if(err) throw err;
+            res.send(result)
+        })
+    }
+    
+})
 
 app.post('/placeOrder',(req,res) => {
     console.log(req.body);
